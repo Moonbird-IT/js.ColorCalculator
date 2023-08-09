@@ -1,0 +1,62 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+div.sticky {
+  padding-top: 20px;
+  padding: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  border-bottom: 1px solid black;
+  background: white;
+}
+
+div.sticky a {
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 3px;
+  color: black;
+}
+
+div.spacer {
+  height: 30px;
+}
+
+div.styled-result div {
+  border: 1px solid black;
+  padding: 5px;
+  margin: 3px;
+}
+.red {
+  background: red;
+}
+
+.Dash {
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.3), transparent);
+  background-size: 10px 10px;
+}
+
+.Dot {
+  background: radial-gradient(circle at 1px 1px, rgba(0,0,0, 0.3) 1px, transparent 0);
+  background-size: 5px 5px;
+}
+
+.LongDashDot {
+  position:relative;
+}
+
+.LongDashDot:before {
+  background-image: url(https://i.stack.imgur.com/j06eS.png);
+  content: ' ';
+  display: block;
+  position: absolute;
+  background-size: 15px 15px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+}

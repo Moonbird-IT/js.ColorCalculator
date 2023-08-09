@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <title>Moonbird Series Style Generator demo</title>
+  <link rel="stylesheet" href="css/color-calculator.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="../lib/series-style-generator.js"></script>
+  <link rel="stylesheet" href="css/series-style-generator.css">
+</head>
+<body>
+<div class="sticky">
+  <a href="#Normal">Normal text</a>
+  <a href="#Exceptions">Exception texts</a>
+</div>
+
+<div class="spacer"></div>
+
+<a name="Normal"></a>
+<div class="styled-result" id="test"></div>
+<hr>
+
+<a name="Exceptions"></a>
+<div class="styled-result" id="test2"></div>
+
+<script>
+  let styleGenerator = new Moonbird.Component.SeriesStyleGenerator();
+
+  // Register exception strings to be highlighted, the given strings will need to start with the given term):
+  styleGenerator.registerStringToHighlight("Exception");
+
+  let $elements = $('#test');
+  let $elements2 = $('#test2');
+
+  let normalText = "Process - COP - Processing Active";
+  let exceptionText = "Exception.50100.Alarm";
+
+  for (i = 0; i < 100; i++) {
+    let style = styleGenerator.assign(normalText + i);
+    $elements.append($('<div></div>').text(normalText + i + ' [' + style.Style + ']').css('background-color', style.Color).addClass(style.Style));
+    style = styleGenerator.assign(exceptionText + i);
+    $elements2.append($('<div></div>').text(exceptionText + i + ' [' + style.Style + ']').css('background-color', style.Color).addClass(style.Style));
+
+    // reuse a previously assigned value to test if the same style is reapplied.
+    if (i > 0 && i % 10 === 0) {
+      style = styleGenerator.assign(normalText + (i-10));
+      $elements.append($('<div></div>').text(normalText + (i-10) + ' -> repeated [' + style.Style + ']').css('background-color', style.Color).addClass(style.Style));
+      style = styleGenerator.assign(exceptionText + (i-10));
+      $elements2.append($('<div></div>').text(exceptionText + (i-10) + ' -> repeated [' + style.Style + ']').css('background-color', style.Color).addClass(style.Style));
+    }
+  }
+</script>
+</body>
+</html>

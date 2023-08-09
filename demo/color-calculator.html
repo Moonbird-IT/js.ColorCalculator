@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <title>Moonbird Color Calculator demo</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="../lib/color-calculator.js"></script>
+  <link rel="stylesheet" href="css/color-calculator.css">
+</head>
+<body>
+<div class="styled-box" id="test">
+  <div>App.SR_Basic.fbProcedure.hmi_xAbortingActive</div>
+  <div>App.SR_CompressedAirHeater.fbHeater.fbBargraph.ActualValue</div>
+  <div>Some other text</div>
+  <div>Exception.10500.Alarm</div>
+  <div>Exception.10501.Alarm</div>
+  <div>Exception.10510.Alarm</div>
+  <div>App.SR_Basic.fbProcedure.hmi_xAbortingActive</div>
+  <div>App.SR_CompressedAirHeater.fbHeater.fbBargraph.ActualValue</div>
+  <div>Exception - others</div>
+  <div>Exception.10500.Alarm</div>
+  <div>Exception.50100.Alarm</div>
+  <div>App.SR_CompressedAirHeater.fbHeater.fbBargraph.ActualValue</div>
+</div>
+<script>
+
+  let colorCalculator = new Moonbird.Component.ColorCalculator();
+  colorCalculator.registerStringToHighlight("Exception");
+
+  let $elements = $('#test div');
+  $elements.each(function (i, elem) {
+    $(elem).css('background-color', colorCalculator.generate(elem.innerText));
+  });
+
+</script>
+</body>
+</html>
